@@ -31,16 +31,16 @@ namespace LojaRoupas.Controllers
 
         // GET: api/TransacaoRoupas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TransacaoRoupa>>> GetTransacoes()
+        public async Task<ActionResult<IEnumerable<VendaRoupa>>> GetTransacoes()
         {
-            return await _context.Transacoes.ToListAsync();
+            return await _context.Vendas.ToListAsync();
         }
 
         // GET: api/TransacaoRoupas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TransacaoRoupa>> GetTransacaoRoupa(int id)
+        public async Task<ActionResult<VendaRoupa>> GetTransacaoRoupa(int id)
         {
-            var transacaoRoupa = await _context.Transacoes.FindAsync(id);
+            var transacaoRoupa = await _context.Vendas.FindAsync(id);
 
             if (transacaoRoupa == null)
             {
@@ -53,7 +53,7 @@ namespace LojaRoupas.Controllers
         // PUT: api/TransacaoRoupas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTransacaoRoupa(int id, TransacaoRoupa transacaoRoupa)
+        public async Task<IActionResult> PutTransacaoRoupa(int id, VendaRoupa transacaoRoupa)
         {
             if (id != transacaoRoupa.TransacaoId)
             {
@@ -84,7 +84,7 @@ namespace LojaRoupas.Controllers
         // POST: api/TransacaoRoupas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TransacaoRoupa>> PostTransacaoRoupa
+        public async Task<ActionResult<VendaRoupa>> PostTransacaoRoupa
             ([FromQuery] int ClienteId, [FromQuery] int VendedorId, [FromQuery] List<int> RoupasIds)
         {
             var clienteResult = await _clientesController.GetCliente(ClienteId);
@@ -101,9 +101,9 @@ namespace LojaRoupas.Controllers
                 roupas.Add(roupaPeca.Value);
             }
 
-            var transacaoRoupa = new TransacaoRoupa(vendedor, cliente, roupas);
+            var transacaoRoupa = new VendaRoupa(vendedor, cliente, roupas);
 
-            _context.Transacoes.Add(transacaoRoupa);
+            _context.Vendas.Add(transacaoRoupa);
             await _context.SaveChangesAsync();
 
             // Return a response (customize this part as needed)
@@ -118,13 +118,13 @@ namespace LojaRoupas.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTransacaoRoupa(int id)
         {
-            var transacaoRoupa = await _context.Transacoes.FindAsync(id);
+            var transacaoRoupa = await _context.Vendas.FindAsync(id);
             if (transacaoRoupa == null)
             {
                 return NotFound();
             }
 
-            _context.Transacoes.Remove(transacaoRoupa);
+            _context.Vendas.Remove(transacaoRoupa);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -132,7 +132,7 @@ namespace LojaRoupas.Controllers
 
         private bool TransacaoRoupaExists(int id)
         {
-            return _context.Transacoes.Any(e => e.TransacaoId == id);
+            return _context.Vendas.Any(e => e.TransacaoId == id);
         }
     }
 }

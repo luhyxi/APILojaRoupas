@@ -1,25 +1,26 @@
-﻿namespace LojaRoupas.Models.Trade
+﻿using System.Drawing;
+
+namespace LojaRoupas.Models.Trade
 {
-    public class TransacaoRoupa
+    public class TrocaRoupa
     {
         private static int IdCounter = 0;
-
-        public TransacaoRoupa()
+        public TrocaRoupa()
         {
+            
         }
-        public TransacaoRoupa(Vendedor vendedor, Cliente cliente, List<RoupaPeca> roupaPecas)
+        public TrocaRoupa(Vendedor vendedor, Cliente cliente, List<RoupaPeca> roupasOriginais, List<RoupaPeca> roupasTrocadas)
         {
             TransacaoId = IdCounter++;
             Vendedor = vendedor;
             VendedorId = Vendedor.UserId;
             Cliente = cliente;
             ClienteId = Cliente.UserId;
-            RoupaPecas = roupaPecas;
+            RoupasOriginais = roupasOriginais;
+            RoupasTrocadas = roupasTrocadas;
             MomentoTransacao = DateTime.Now;
-            Valor = RetornarValor();
         }
-
-        public int TransacaoId { get; set; }
+        public int TransacaoId { get; private set; }
         private DateTime? MomentoTransacao { get; set; }
 
         public Vendedor Vendedor { get; set; }
@@ -28,11 +29,8 @@
         public int VendedorId { get; set; }
         public int ClienteId { get; set; }
 
-        public List<RoupaPeca> RoupaPecas { get; set; }
-
-        private decimal Valor { get; set; }
-
-        private decimal RetornarValor() => RoupaPecas.Sum(x => x.Preco);
+        public List<RoupaPeca> RoupasOriginais { get; set; }
+        public List<RoupaPeca> RoupasTrocadas { get; set; }
 
     }
 }

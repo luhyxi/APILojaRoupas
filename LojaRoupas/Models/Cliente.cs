@@ -1,4 +1,5 @@
-﻿using LojaRoupas.Models.Trade;
+﻿using LojaRoupas.Models.Interfaces;
+using LojaRoupas.Models.Trade;
 
 namespace LojaRoupas.Models
 {
@@ -13,6 +14,6 @@ namespace LojaRoupas.Models
         }
         public int UserId { get; private set; }
         public string UserName { get; set; }
-        public ICollection<TransacaoRoupa>? Transacoes = null;
+        public ICollection<VendaRoupa>? Transacoes = null;
     }
 }

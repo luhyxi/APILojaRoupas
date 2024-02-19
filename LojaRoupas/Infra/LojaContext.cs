@@ -12,7 +12,7 @@ namespace LojaRoupas.Infra
         public DbSet<RoupaPeca> Roupas { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Vendedor> Vendedor { get; set; }
-        public DbSet<TransacaoRoupa> Transacoes{ get; set; }
+        public DbSet<VendaRoupa> Vendas{ get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,14 +20,14 @@ namespace LojaRoupas.Infra
             modelBuilder.Entity<Cliente>().HasKey(c => c.UserId);
             modelBuilder.Entity<Vendedor>().HasKey(c => c.UserId);
             modelBuilder.Entity<RoupaPeca>().HasKey(c => c.RoupaId);
-            modelBuilder.Entity<TransacaoRoupa>().HasKey(c => c.TransacaoId);
+            modelBuilder.Entity<VendaRoupa>().HasKey(c => c.TransacaoId);
 
-            modelBuilder.Entity<TransacaoRoupa>()
+            modelBuilder.Entity<VendaRoupa>()
                 .HasOne(tr => tr.Vendedor)
                 .WithMany(v => v.Transacoes)
                 .HasForeignKey(tr => tr.VendedorId);
 
-            modelBuilder.Entity<TransacaoRoupa>()
+            modelBuilder.Entity<VendaRoupa>()
                 .HasOne(tr => tr.Cliente)
                 .WithMany(c => c.Transacoes)
                 .HasForeignKey(tr => tr.ClienteId);

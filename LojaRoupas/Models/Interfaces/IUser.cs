@@ -1,7 +1,7 @@
 ﻿using LojaRoupas.Models.Enums;
 using LojaRoupas.Models.Trade;
 
-namespace LojaRoupas.Models
+namespace LojaRoupas.Models.Interfaces
 {
     public interface IUser
     {
