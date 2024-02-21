@@ -29,8 +29,4 @@
     <Compile Remove="Controllers\TransacaoRoupasController.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
