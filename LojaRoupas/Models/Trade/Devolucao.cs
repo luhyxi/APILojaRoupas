@@ -1,26 +1,30 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using LojaRoupas.Models.Interfaces;
+using LojaRoupas.Models.Users;
 
 namespace LojaRoupas.Models.Trade
 {
-    public class TrocaRoupa
+    [Table("Devolucoes")]
+
+    public class Devolucao : TradeBase, ITrade
     {
-        private static int IdCounter = 0;
-        public TrocaRoupa()
+        public Devolucao()
         {
-            
+
         }
-        public TrocaRoupa(Vendedor vendedor, Cliente cliente, List<RoupaPeca> roupasOriginais, List<RoupaPeca> roupasTrocadas)
+        public Devolucao(Vendedor vendedor, Cliente cliente, List<Roupa> roupasOriginais)
         {
-            TransacaoId = IdCounter++;
+            DevolucaoId = IdCounter++;
             Vendedor = vendedor;
             VendedorId = Vendedor.UserId;
             Cliente = cliente;
             ClienteId = Cliente.UserId;
             RoupasOriginais = roupasOriginais;
-            RoupasTrocadas = roupasTrocadas;
             MomentoTransacao = DateTime.Now;
         }
-        public int TransacaoId { get; private set; }
+        [Key]
+        public int DevolucaoId { get; private set; }
         private DateTime? MomentoTransacao { get; set; }
 
         public Vendedor Vendedor { get; set; }
@@ -29,8 +33,6 @@ namespace LojaRoupas.Models.Trade
         public int VendedorId { get; set; }
         public int ClienteId { get; set; }
 
-        public List<RoupaPeca> RoupasOriginais { get; set; }
-        public List<RoupaPeca> RoupasTrocadas { get; set; }
-
+        public List<Roupa> RoupasOriginais { get; set; }
     }
 }

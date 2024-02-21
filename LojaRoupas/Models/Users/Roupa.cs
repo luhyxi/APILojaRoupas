@@ -1,19 +1,23 @@
-﻿using LojaRoupas.Models.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using LojaRoupas.Models.Enums;
 
-namespace LojaRoupas.Models
+namespace LojaRoupas.Models.Users
 {
-    public class RoupaPeca
+    [Table("Roupas")]
+    public class Roupa
     {
         private static int IdCounter = 0;
 
-        public RoupaPeca(string? nomePeca, decimal preco, TipoRoupa tipo)
+        public Roupa(string? nomePeca, decimal preco, TipoRoupa tipo)
         {
             RoupaId = IdCounter++;
             NomePeca = nomePeca;
             Preco = preco;
             Tipo = tipo;
         }
-
+        
+        [Key]
         public int RoupaId { get; private set; }
         public string? NomePeca { get; set; }
         public decimal Preco { get; set; }

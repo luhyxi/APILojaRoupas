@@ -23,14 +23,14 @@ namespace LojaRoupas.Controllers
 
         // GET: api/RoupaPecas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RoupaPeca>>> GetRoupas()
+        public async Task<ActionResult<IEnumerable<Roupa>>> GetRoupas()
         {
             return await _context.Roupas.ToListAsync();
         }
 
         // GET: api/RoupaPecas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<RoupaPeca>> GetRoupaPeca(int id)
+        public async Task<ActionResult<Roupa>> GetRoupaPeca(int id)
         {
             var roupaPeca = await _context.Roupas.FindAsync(id);
 
@@ -45,14 +45,14 @@ namespace LojaRoupas.Controllers
         // PUT: api/RoupaPecas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoupaPeca(int id, RoupaPeca roupaPeca)
+        public async Task<IActionResult> PutRoupaPeca(int id, Roupa roupa)
         {
-            if (id != roupaPeca.RoupaId)
+            if (id != roupa.RoupaId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(roupaPeca).State = EntityState.Modified;
+            _context.Entry(roupa).State = EntityState.Modified;
 
             try
             {
@@ -76,12 +76,12 @@ namespace LojaRoupas.Controllers
         // POST: api/RoupaPecas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<RoupaPeca>> PostRoupaPeca(RoupaPeca roupaPeca)
+        public async Task<ActionResult<Roupa>> PostRoupaPeca(Roupa roupa)
         {
-            _context.Roupas.Add(roupaPeca);
+            _context.Roupas.Add(roupa);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRoupaPeca", new { id = roupaPeca.RoupaId }, roupaPeca);
+            return CreatedAtAction("GetRoupaPeca", new { id = roupa.RoupaId }, roupa);
         }
 
         // DELETE: api/RoupaPecas/5

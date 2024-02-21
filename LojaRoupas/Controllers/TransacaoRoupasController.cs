@@ -93,8 +93,8 @@ namespace LojaRoupas.Controllers
             var vendedor = vendedorResult.Value;
 
 
-            List<ActionResult<RoupaPeca>> roupasResult = new List<ActionResult<RoupaPeca>>();
-            List<RoupaPeca> roupas = new List<RoupaPeca>();
+            List<ActionResult<Roupa>> roupasResult = new List<ActionResult<Roupa>>();
+            List<Roupa> roupas = new List<Roupa>();
             foreach (int id in RoupasIds)
             {
                 var roupaPeca = await _roupaController.GetRoupaPeca(id);

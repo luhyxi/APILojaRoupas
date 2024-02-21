@@ -1,17 +1,19 @@
-﻿using LojaRoupas.Models.Interfaces;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using LojaRoupas.Models.Interfaces;
+using LojaRoupas.Models.Users;
 
 namespace LojaRoupas.Models.Trade
 {
-    public class VendaRoupa : ITrade
+    [Table("Vendas")]
+    public class Venda : TradeBase, ITrade
     {
-        private static int IdCounter = 0;
-
-        public VendaRoupa()
+        public Venda()
         {
         }
-        public VendaRoupa(Vendedor vendedor, Cliente cliente, List<RoupaPeca> roupaPecas)
+        public Venda(Vendedor vendedor, Cliente cliente, List<Roupa> roupaPecas)
         {
-            TransacaoId = IdCounter++;
+            VendaId = IdCounter++;
             Vendedor = vendedor;
             VendedorId = Vendedor.UserId;
             Cliente = cliente;
@@ -20,8 +22,9 @@ namespace LojaRoupas.Models.Trade
             MomentoTransacao = DateTime.Now;
             Valor = RetornarValor();
         }
+        [Key]
 
-        public int TransacaoId { get; private set; }
+        public int VendaId { get; private set; }
         protected DateTime MomentoTransacao { get; set; }
 
         public Vendedor Vendedor { get; set; }
@@ -30,7 +33,7 @@ namespace LojaRoupas.Models.Trade
         public int VendedorId { get; set; }
         public int ClienteId { get; set; }
 
-        public List<RoupaPeca> RoupaPecas { get; set; }
+        public List<Roupa> RoupaPecas { get; set; }
 
         private decimal Valor { get; set; }
 

@@ -47,7 +47,7 @@ namespace LojaRoupas.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
-            if (id != cliente.UserId)
+            if (id != cliente.VendedorId)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace LojaRoupas.Controllers
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCliente", new { id = cliente.UserId }, cliente);
+            return CreatedAtAction("GetCliente", new { id = cliente.VendedorId }, cliente);
         }
 
         // DELETE: api/Clientes/5
@@ -102,7 +102,7 @@ namespace LojaRoupas.Controllers
 
         private bool ClienteExists(int id)
         {
-            return _context.Clientes.Any(e => e.UserId == id);
+            return _context.Clientes.Any(e => e.VendedorId == id);
         }
     }
 }

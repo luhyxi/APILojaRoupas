@@ -1,4 +1,3 @@
-using LojaRoupas.Controllers;
 using LojaRoupas.Infra;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,10 +9,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<VendedorsController>();
-builder.Services.AddScoped<ClientesController>();
-builder.Services.AddScoped<RoupaPecasController>();
-builder.Services.AddScoped<TransacaoRoupasController>();
 
 
 builder.Services.AddDbContext<LojaContext>(options =>
